@@ -1,0 +1,73 @@
+{
+  "model_type": "RandomForestClassifier",
+  "n_estimators": 100,
+  "max_depth": 8,
+  "features": [
+    "public_access",
+    "exposed_port",
+    "cidr_open",
+    "iam_change",
+    "destructive_change",
+    "security_findings",
+    "resource_count",
+    "resource_type_risk"
+  ],
+  "classes": [
+    "LOW",
+    "MEDIUM",
+    "HIGH",
+    "CRITICAL"
+  ],
+  "validation_accuracy": 0.962,
+  "classification_report": {
+    "LOW": {
+      "precision": 0.9692307692307692,
+      "recall": 0.9264705882352942,
+      "f1-score": 0.9473684210526315,
+      "support": 68.0
+    },
+    "MEDIUM": {
+      "precision": 0.9520958083832335,
+      "recall": 0.9814814814814815,
+      "f1-score": 0.9665653495440729,
+      "support": 162.0
+    },
+    "HIGH": {
+      "precision": 0.9629629629629629,
+      "recall": 0.948905109489051,
+      "f1-score": 0.9558823529411765,
+      "support": 137.0
+    },
+    "CRITICAL": {
+      "precision": 0.9699248120300752,
+      "recall": 0.9699248120300752,
+      "f1-score": 0.9699248120300752,
+      "support": 133.0
+    },
+    "accuracy": 0.962,
+    "macro avg": {
+      "precision": 0.9635535881517603,
+      "recall": 0.9566954978089754,
+      "f1-score": 0.9599352338919891,
+      "support": 500.0
+    },
+    "weighted avg": {
+      "precision": 0.9621462783834042,
+      "recall": 0.962,
+      "f1-score": 0.9619210432213199,
+      "support": 500.0
+    }
+  },
+  "feature_importances": {
+    "public_access": 0.0763,
+    "exposed_port": 0.0776,
+    "cidr_open": 0.054,
+    "iam_change": 0.1342,
+    "destructive_change": 0.0859,
+    "security_findings": 0.3441,
+    "resource_count": 0.2141,
+    "resource_type_risk": 0.0138
+  },
+  "is_demo": true,
+  "notice": "PROTOTYPE MODEL DISCLAIMER: This risk scoring model is trained on a synthetic baseline dataset. It provides decision support and risk indicators. Final deployment authorization is enforced by human role-based approval policy gates."
+}

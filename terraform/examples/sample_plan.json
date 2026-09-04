@@ -1,0 +1,59 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.7.5",
+  "resource_changes": [
+    {
+      "address": "aws_security_group.web_sg",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "web_sg",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": ["create"],
+        "before": null,
+        "after": {
+          "description": "Production Web Ingress",
+          "name": "web-external-sg",
+          "ingress": [
+            {
+              "cidr_blocks": ["0.0.0.0/0"],
+              "description": "Public HTTPS",
+              "from_port": 443,
+              "protocol": "tcp",
+              "to_port": 443
+            },
+            {
+              "cidr_blocks": ["0.0.0.0/0"],
+              "description": "Public SSH (Insecure)",
+              "from_port": 22,
+              "protocol": "tcp",
+              "to_port": 22
+            }
+          ]
+        }
+      }
+    },
+    {
+      "address": "aws_s3_bucket.data_archive",
+      "mode": "managed",
+      "type": "aws_s3_bucket",
+      "name": "data_archive",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": ["create"],
+        "before": null,
+        "after": {
+          "bucket": "chainstate-archive-prod-2026",
+          "acl": "private",
+          "server_side_encryption_configuration": {
+            "rule": {
+              "apply_server_side_encryption_by_default": {
+                "sse_algorithm": "aws:kms"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
