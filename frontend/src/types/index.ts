@@ -63,6 +63,7 @@ export interface RiskAssessment {
 
 export interface TerraformChange {
   id: string;
+  change_id?: string;
   repository: string;
   commit_hash: string;
   author: string;
@@ -79,10 +80,56 @@ export interface ApprovalRecord {
   id: string;
   change_id: string;
   reviewer_name: string;
-  role: UserRole;
+  reviewer_role?: UserRole;
+  role?: UserRole;
   decision: ApprovalDecision;
   comments: string;
-  timestamp: string;
+  timestamp?: string;
+  created_at?: string;
+}
+
+export interface ProvisionedResourceItem {
+  resource_type: string;
+  resource_name: string;
+  physical_id: string;
+  arn: string;
+  action: string;
+  status: string;
+  properties?: Record<string, any>;
+}
+
+export interface DeploymentListItem {
+  id: string;
+  change_id: string;
+  change_identifier: string;
+  change_message: string;
+  author: string;
+  state: DeploymentState;
+  target_environment: string;
+  aws_region: string;
+  is_demo_mode: boolean;
+  resource_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DeploymentResponse {
+  id: string;
+  change_id: string;
+  change_identifier: string;
+  change_message: string;
+  author: string;
+  state: DeploymentState;
+  target_environment: string;
+  aws_region: string;
+  is_demo_mode: boolean;
+  resources_provisioned: ProvisionedResourceItem[];
+  logs: string[];
+  audit_hash?: string;
+  blockchain_tx_id?: string;
+  duration_seconds: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface DeploymentRecord {

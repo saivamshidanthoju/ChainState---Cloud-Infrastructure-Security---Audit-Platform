@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from app.config import get_settings
 from app.database import get_db, SessionLocal
-from app.api import auth, terraform, security, risk
+from app.api import auth, terraform, security, risk, approvals, deployments
 from app.models import (
     TerraformChange,
     Approval,
@@ -79,6 +79,8 @@ app.include_router(auth.router, prefix="/api")
 app.include_router(terraform.router, prefix="/api")
 app.include_router(security.router, prefix="/api")
 app.include_router(risk.router, prefix="/api")
+app.include_router(approvals.router, prefix="/api")
+app.include_router(deployments.router, prefix="/api/deployments", tags=["Deployments"])
 
 
 @app.get("/")
